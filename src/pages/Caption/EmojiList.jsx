@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import EmojiListITems from "./EmojiListITems";
+
 const styles = theme => ({
   root: {
     display: "flex",
@@ -21,6 +22,10 @@ const styles = theme => ({
 });
 
 class ImageGridList extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   handleClick = event => {
     const { addEmoji } = this.props;
     addEmoji(event.target.textContent);
@@ -29,17 +34,20 @@ class ImageGridList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <GridList cellHeight={32} className={classes.gridList} cols={20}>
-          {EmojiListITems.map((emoji, index) => (
-            <GridListTile key={Math.random()}>
-              <p className={classes.emoji} onClick={this.handleClick}>
-                {emoji}
-              </p>
-            </GridListTile>
-          ))}
-        </GridList>
-      </div>
+      <>
+        <p>By clicking on an emoji you can add it to your capation</p>
+        <div className={classes.root}>
+          <GridList cellHeight={32} className={classes.gridList} cols={20}>
+            {EmojiListITems.map((emoji, index) => (
+              <GridListTile key={Math.random()}>
+                <p className={classes.emoji} onClick={this.handleClick}>
+                  {emoji}
+                </p>
+              </GridListTile>
+            ))}
+          </GridList>
+        </div>
+      </>
     );
   }
 }
