@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 
-const styles = theme => ({});
+const styles = theme => ({
+  textField: {
+    whiteSpace: "pre-line"
+  }
+});
 
 class EmojiListInput extends Component {
   handleChange = () => event => {
