@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router-dom";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import EmojListInput from "./EmojListInput";
 import EmojList from "./EmojiList";
 
@@ -37,6 +36,9 @@ class Caption extends Component {
     const { captionText } = this.state;
     console.log(emoji);
     this.setState({ captionText: captionText + emoji });
+    const captionInput = document.getElementById("captionInput");
+    // captionInput.scrollTop = captionInput.scrollHeight + 100;
+    captionInput.focus();
   };
 
   render() {
