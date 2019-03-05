@@ -34,6 +34,11 @@ class Topbar extends Component {
     this.setState({ menuDrawer: false });
   };
 
+  toggleDrawer = () => {
+    const menuDrawerState = this.state;
+    this.setState({ menuDrawer: !menuDrawerState });
+  };
+
   componentDidMount() {
     window.scrollTo(0, 0);
   }
@@ -93,6 +98,7 @@ class Topbar extends Component {
                               pathname: item.pathname,
                               search: this.props.location.search
                             }}
+                            onClick={this.toggleDrawer}
                             button
                             key={index}
                           >
