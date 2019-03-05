@@ -37,7 +37,7 @@ class ImageGridList extends Component {
       <>
         <p>By clicking on an emoji you can add it to your capation</p>
         <div className={classes.root}>
-          <GridList cellHeight={32} className={classes.gridList} cols={20}>
+          <GridList cellHeight={42} className={classes.gridList} cols={12}>
             {EmojiListITems.map((emoji, index) => (
               <GridListTile key={Math.random()}>
                 <p className={classes.emoji} onClick={this.handleClick}>

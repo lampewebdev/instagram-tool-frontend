@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
 
-const styles = theme => ({
-  textField: {
-    whiteSpace: "pre-line"
-  }
-});
+const styles = theme => ({});
 
 class EmojiListInput extends Component {
   handleChange = () => event => {
@@ -19,10 +15,11 @@ class EmojiListInput extends Component {
     return (
       <form className={container} noValidate autoComplete="off">
         <TextField
-          id="standard-name"
+          id="captionInput"
+          tabIndex="0"
           fullWidth
           multiline
-          rows="10"
+          rows="6"
           value={captionText}
           className={textField}
           onChange={handleChange()}

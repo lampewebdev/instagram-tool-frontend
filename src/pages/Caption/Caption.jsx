@@ -20,17 +20,22 @@ class Caption extends Component {
   };
 
   handleChange = () => event => {
-    const captionText = event.target.value;
+    this.setState({ captionText: event.target.value });
+  };
+
+  handleCopy = event => {
+    const { captionText } = this.state;
     const newCaptionText = captionText.replace(/(?:\r\n|\r|\n)/g, "⁣\n");
-    this.setState({ captionText: newCaptionText });
+    document.addEventListener("copy", event => {
+      event.clipboardData.setData("text/plain", newCaptionText);
+      event.preventDefault();
+    });
+    document.execCommand("copy");
   };
-  handleCopy = (text, result) => {
-    const newText = text.replace(/(?:\r\n|\r|\n)/g, "⁣AAAAAAAAA");
-    console.log(text, result);
-    return newText;
-  };
+
   addEmoji = emoji => {
     const { captionText } = this.state;
+    console.log(emoji);
     this.setState({ captionText: captionText + emoji });
   };
 
@@ -40,13 +45,7 @@ class Caption extends Component {
     const { root } = classes;
     return (
       <div className={root}>
-        <Grid
-          container
-          // direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={8}
-        >
+        <Grid container justify="center" alignItems="center" spacing={8}>
           <Grid item xs={12} sm={8} lg={8}>
             <p>Please enter your caption</p>
           </Grid>
@@ -57,18 +56,14 @@ class Caption extends Component {
             />
           </Grid>
           <Grid item xs={12} sm={8} lg={8}>
-            <CopyToClipboard
-              text={this.state.captionText}
-              onCopy={this.handleCopy}
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.handleCopy}
             >
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.button}
-              >
-                Copy Text
-              </Button>
-            </CopyToClipboard>
+              Copy Text
+            </Button>
           </Grid>
           <Grid item xs={12} sm={8} lg={8}>
             <EmojList addEmoji={this.addEmoji} />
